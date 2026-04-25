@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DIVIX — Contul meu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav__left">
+      <div class="nav__icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="8" r="4"/>
+          <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
+      </div>
+      <span class="nav__brand">Atelier</span>
+    </div>
+    <nav class="nav__links">
+      <a href="index.html">acasă</a>
+      <a href="colectia.html">colecția</a>
+      <a href="despre.html">despre noi</a>
+      <a href="#">contacte</a>
+      <a href="#" class="nav__cart">coș(0)</a>
+    </nav>
+  </header>
+
+  <section class="auth">
+    <div class="auth__box" style="text-align:center;">
+      <div id="continut"></div>
+    </div>
+  </section>
+
+  <script>
+    const utilizator = JSON.parse(localStorage.getItem('divix_logat'));
+
+    const continut = document.getElementById('continut');
+
+    if (utilizator) {
+      continut.innerHTML = `
+        <div style="font-size:48px; margin-bottom:16px;">✓</div>
+        <h1 style="font-family:'Anton',sans-serif; font-size:32px; color:#fff; margin-bottom:12px;">
+          Salut, ${utilizator.prenume}!
+        </h1>
+        <p style="color:#888; font-size:14px; margin-bottom:32px;">
+          Te-ai logat cu succes în contul DIVIX.
+        </p>
+        <div style="background:#111; border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:20px; text-align:left; margin-bottom:24px;">
+          <p style="color:#888; font-size:11px; margin-bottom:4px;">NUME</p>
+          <p style="color:#fff; font-size:14px; margin-bottom:16px;">${utilizator.nume} ${utilizator.prenume}</p>
+          <p style="color:#888; font-size:11px; margin-bottom:4px;">EMAIL</p>
+          <p style="color:#fff; font-size:14px; margin-bottom:16px;">${utilizator.email}</p>
+          <p style="color:#888; font-size:11px; margin-bottom:4px;">TELEFON</p>
+          <p style="color:#fff; font-size:14px;">${utilizator.telefon}</p>
+        </div>
+        <a href="colectia.html" style="display:block; background:#fff; color:#111; border-radius:100px; padding:14px; font-size:14px; text-decoration:none; margin-bottom:12px;">
+          Vezi colecția
+        </a>
+        <button onclick="logout()" style="background:transparent; color:#888; border:1px solid rgba(255,255,255,0.1); border-radius:100px; padding:14px; width:100%; font-size:14px; cursor:pointer;">
+          Deloghează-te
+        </button>
+      `;
+    } else {
+      continut.innerHTML = `
+        <h1 style="font-family:'Anton',sans-serif; font-size:32px; color:#fff; margin-bottom:12px;">
+          Nu ești logat!
+        </h1>
+        <p style="color:#888; font-size:14px; margin-bottom:24px;">
+          Trebuie să te loghezi pentru a accesa contul.
+        </p>
+        <a href="login.html" style="display:block; background:#fff; color:#111; border-radius:100px; padding:14px; font-size:14px; text-decoration:none;">
+          Loghează-te
+        </a>
+      `;
+    }
+
+    function logout() {
+      localStorage.removeItem('divix_logat');
+      window.location.href = 'index.html';
+    }
+  </script>
+
+</body>
+</html>

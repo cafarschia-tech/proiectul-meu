@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DIVIX — Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav__left">
+      <div class="nav__icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="8" r="4"/>
+          <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
+      </div>
+      <span class="nav__brand">Atelier</span>
+    </div>
+    <nav class="nav__links">
+      <a href="index.html">acasă</a>
+      <a href="colectia.html">colecția</a>
+      <a href="despre.html">despre noi</a>
+      <a href="#">contacte</a>
+      <a href="#" class="nav__cart">coș(0)</a>
+    </nav>
+  </header>
+
+  <section class="auth">
+    <div class="auth__box">
+      <h1 class="auth__titlu">Bun venit</h1>
+      <p class="auth__sub">Loghează-te în contul tău DIVIX</p>
+
+      <div id="mesaj" class="auth__mesaj"></div>
+
+      <form id="formLogin" class="auth__form">
+        <div class="auth__group">
+          <label class="auth__label">Email</label>
+          <input class="auth__input" type="text" id="email" placeholder="ex: maria@email.com" />
+        </div>
+        <div class="auth__group">
+          <label class="auth__label">Parolă</label>
+          <input class="auth__input" type="password" id="parola" placeholder="parola ta" />
+        </div>
+        <button type="submit" class="auth__btn">Intră în cont</button>
+      </form>
+
+      <p class="auth__link">Nu ai cont? <a href="register.html">Înregistrează-te</a></p>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
