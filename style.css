@@ -25,7 +25,7 @@ a {
   color: inherit;
 }
 
-/* NAV */
+
 .nav {
   display: flex;
   align-items: center;
@@ -181,7 +181,7 @@ a {
   to { opacity: 1; }
 }
 
-/* RESPONSIVE */
+
 @media (max-width: 768px) {
   .nav { padding: 0 20px; }
   .nav__links { gap: 16px; }
@@ -199,7 +199,7 @@ a {
   }
 }
 
-/* COLECȚIE */
+
 .colectie {
   padding: 20px 24px;
   background-color: #e8e5e0;
@@ -564,7 +564,7 @@ a {
   text-decoration: none;
 }
 
-/* COS */
+
 .cos {
   padding: 40px 32px;
   min-height: calc(100vh - 64px);
@@ -659,7 +659,7 @@ a {
   margin-top: 80px;
 }
 
-/* MESAJ ADAUGAT IN COS */
+
 #mesaj-cos {
   position: fixed;
   bottom: 24px;
@@ -675,7 +675,7 @@ a {
   z-index: 999;
 }
 
-/* CONTACT */
+
 .contact {
   display: flex;
   flex-direction: row;
@@ -785,7 +785,6 @@ a {
   text-decoration: underline;
 }
 
-/* NEWSLETTER */
 .newsletter {
   text-align: center;
   padding: 80px 24px 60px;
@@ -823,7 +822,7 @@ a {
   background-color: #333;
 }
 
-/* MARQUEE */
+
 .marquee {
   overflow: hidden;
   background-color: #fff;
@@ -848,4 +847,22 @@ a {
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
+}
+
+.cos__comanda {
+  margin-top: 16px;
+  background-color: var(--white);
+  color: var(--bg);
+  border: none;
+  border-radius: 100px;
+  padding: 14px 36px;
+  font-size: 14px;
+  font-family: var(--font-body);
+  cursor: pointer;
+  float: right;
+  transition: background-color 0.2s;
+}
+
+.cos__comanda:hover {
+  background-color: #e0e0e0;
 }
