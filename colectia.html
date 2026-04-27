@@ -24,14 +24,14 @@
     <nav class="nav__links">
       <a href="index.html">acasă</a>
       <a href="colectia.html">colecția</a>
-      <a href="#">despre noi</a>
-      <a href="#">contacte</a>
-      <a href="#" class="nav__cart">coș(0)</a>
+      <a href="despre.html">despre noi</a>
+      <a href="contacte.html">contacte</a>
+      <a href="cos.html" class="nav__cart" id="nav-cart">coș(0)</a>
     </nav>
   </header>
 
 <div id="user-logat" class="user-logat"></div>
-
+<div id="mesaj-cos">✓ Adăugat în coș!</div>
   <section class="colectie">
     <div class="colectie__header">
       <span class="colectie__count">35</span>
@@ -47,7 +47,7 @@
           <p class="produs-card__nume">Super-Star in nappa with gray suede star and heel tab</p>
           <div class="produs-card__footer">
             <span class="produs-card__pret">450$</span>
-            <button class="produs-card__btn">coș(0)</button>
+            <button class="produs-card__btn" onclick="adaugaInCos(1, 'Super-Star in nappa with gray suede star and heel tab', 450, 'colectia/sneaker1.jpg')">coș(0)</button>
           </div>
         </div>
       </div>
@@ -60,7 +60,7 @@
           <p class="produs-card__nume">GoldenGoose shoes with stars</p>
           <div class="produs-card__footer">
             <span class="produs-card__pret">600$</span>
-            <button class="produs-card__btn">coș(0)</button>
+            <button class="produs-card__btn" onclick="adaugaInCos(2, 'GoldenGoose shoes with stars', 600, 'colectia/sneaker2.jpg')">coș(0)</button>
           </div>
         </div>
       </div>
@@ -73,7 +73,7 @@
           <p class="produs-card__nume">Super-Star Sneakers White/Navy</p>
           <div class="produs-card__footer">
             <span class="produs-card__pret">325$</span>
-            <button class="produs-card__btn">coș(0)</button>
+            <button class="produs-card__btn" onclick="adaugaInCos(3, 'Super-Star Sneakers White/Navy', 325, 'colectia/sneaker3.jpg')">coș(0)</button>
           </div>
         </div>
       </div>
@@ -86,7 +86,8 @@
           <p class="produs-card__nume">Samba OG Shoes<br/>Core White / Green / Collegiate Green</p>
           <div class="produs-card__footer">
             <span class="produs-card__pret">102$</span>
-            <button class="produs-card__btn">coș(0)</button>
+            <button class="produs-card__btn" onclick="adaugaInCos(4, 'Samba OG Shoes Core White / Green / Collegiate Green', 102, 'colectia/sneaker4.jpg')">coș(0)</button>
+            
           </div>
         </div>
       </div>
@@ -99,7 +100,7 @@
           <p class="produs-card__nume">Campus 00s Shoes<br/>Core Black / Cloud White / Gum</p>
           <div class="produs-card__footer">
             <span class="produs-card__pret">110$</span>
-            <button class="produs-card__btn">coș(0)</button>
+            <button class="produs-card__btn" onclick="adaugaInCos(5, 'Campus 00s Shoes Core Black / Cloud White / Gum', 110, 'colectia/sneaker5.jpg')">coș(0)</button>
           </div>
         </div>
       </div>
@@ -112,7 +113,7 @@
           <p class="produs-card__nume">Samba OG Shoes<br/>Core Black / Cloud White / Gum</p>
           <div class="produs-card__footer">
             <span class="produs-card__pret">100$</span>
-            <button class="produs-card__btn">coș(0)</button>
+            <button class="produs-card__btn" onclick="adaugaInCos(6, 'Samba OG Shoes Core Black / Cloud White / Gum', 100, 'colectia/sneaker6.jpg')">coș(0)</button>
           </div>
         </div>
       </div>
@@ -125,7 +126,7 @@
           <p class="produs-card__nume">NB 530 SNEAKER TURTLEDOVE with ANGORA and MUSHROOM</p>
           <div class="produs-card__footer">
             <span class="produs-card__pret">125$</span>
-            <button class="produs-card__btn">coș(0)</button>
+            <button class="produs-card__btn" onclick="adaugaInCos(7, 'NB 530 SNEAKER TURTLEDOVE with ANGORA and MUSHROOM', 125, 'colectia/sneaker7.jpg')">coș(0)</button>
           </div>
         </div>
       </div>
@@ -138,7 +139,7 @@
           <p class="produs-card__nume">Nike Air Force 1 '07<br/>White/White/White<br/>Style: DD8959-100</p>
           <div class="produs-card__footer">
             <span class="produs-card__pret">115$</span>
-            <button class="produs-card__btn">coș(0)</button>
+            <button class="produs-card__btn" onclick="adaugaInCos(8, 'Nike Air Force 1 07 White/White/White', 115, 'colectia/sneaker8.jpg')">coș(0)</button>
           </div>
         </div>
       </div>
@@ -151,7 +152,7 @@
           <p class="produs-card__nume">Nike P-6000<br/>Color Shown: Silver<br/>Style: #BV1021-101</p>
           <div class="produs-card__footer">
             <span class="produs-card__pret">110$</span>
-            <button class="produs-card__btn">coș(0)</button>
+            <button class="produs-card__btn" onclick="adaugaInCos(9, 'Nike P-6000 Color Shown Silver', 110, 'colectia/sneaker9.jpg')">coș(0)</button>
           </div>
         </div>
       </div>

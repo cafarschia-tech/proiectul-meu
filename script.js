@@ -1,19 +1,7 @@
-let cartCount = 0;
+// =====================
+// HELPER FUNCTIONS
+// =====================
 
-function updateCart() {
-  document.querySelector('.nav__cart').textContent = `coș(${cartCount})`;
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelector('.hero__cta').addEventListener('click', () => {
-    // adaugă redirect sau scroll la colecție
-  });
-
-  document.querySelector('.nav__cart').addEventListener('click', (e) => {
-    e.preventDefault();
-    // adaugă logica pentru coș
-  });
-});
 function getUtilizatori() {
   return JSON.parse(localStorage.getItem('divix_utilizatori')) || [];
 }
@@ -29,7 +17,10 @@ function afiseazaMesaj(text, tip) {
   div.className = 'auth__mesaj ' + (tip === 'eroare' ? 'auth__mesaj--eroare' : 'auth__mesaj--succes');
 }
 
+// =====================
 // REGISTER
+// =====================
+
 const formRegister = document.getElementById('formRegister');
 if (formRegister) {
   formRegister.addEventListener('submit', function(e) {
@@ -78,12 +69,25 @@ if (formRegister) {
     utilizatori.push({ nume, prenume, email, telefon, parola });
     salveazaUtilizatori(utilizatori);
 
+    // Descarca fisier JSON
+    const dataStr = JSON.stringify(utilizatori, null, 2);
+    const blob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'utilizatori.json';
+    a.click();
+    URL.revokeObjectURL(url);
+
     afiseazaMesaj('Cont creat cu succes! Te redirecționăm...', 'succes');
     setTimeout(() => { window.location.href = 'login.html'; }, 2000);
   });
 }
 
+// =====================
 // LOGIN
+// =====================
+
 const formLogin = document.getElementById('formLogin');
 if (formLogin) {
   formLogin.addEventListener('submit', function(e) {
@@ -103,14 +107,36 @@ if (formLogin) {
     if (utilizator) {
       afiseazaMesaj('Bun venit, ' + utilizator.prenume + '! Redirecționare...', 'succes');
       localStorage.setItem('divix_logat', JSON.stringify(utilizator));
-      setTimeout(() => { window.location.href = 'user.html'; }, 2000);
+
+      // Descarca fisier JSON cu datele utilizatorului logat
+      const logData = {
+        nume: utilizator.nume,
+        prenume: utilizator.prenume,
+        email: utilizator.email,
+        telefon: utilizator.telefon,
+        status: 'S-a logat cu succes))',
+        data: new Date().toLocaleString('ro-RO')
+      };
+      const dataStr = JSON.stringify(logData, null, 2);
+      const blob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'logare.json';
+      a.click();
+      URL.revokeObjectURL(url);
+
+      setTimeout(() => { window.location.href = 'index.html'; }, 2000);
     } else {
       afiseazaMesaj('Email sau parolă greșită!', 'eroare');
     }
   });
 }
 
+// =====================
 // COS
+// =====================
+
 function getCart() {
   return JSON.parse(localStorage.getItem('divix_cart')) || [];
 }
@@ -119,33 +145,118 @@ function saveCart(cart) {
   localStorage.setItem('divix_cart', JSON.stringify(cart));
 }
 
-function adaugaInCos(id) {
+function adaugaInCos(id, nume, pret, imagine) {
   const cart = getCart();
   const existent = cart.find(item => item.id === id);
   if (existent) {
     existent.cantitate += 1;
   } else {
-    cart.push({ id, cantitate: 1 });
+    cart.push({ id, nume, pret, imagine, cantitate: 1 });
   }
   saveCart(cart);
   updateCartCount();
+  updateButoane();
+
+  const mesajCos = document.getElementById('mesaj-cos');
+  if (mesajCos) {
+    mesajCos.style.display = 'block';
+    setTimeout(() => { mesajCos.style.display = 'none'; }, 2000);
+  }
 }
 
 function updateCartCount() {
   const cart = getCart();
   const total = cart.reduce((sum, item) => sum + item.cantitate, 0);
-  const cartEl = document.querySelector('.nav__cart');
-  if (cartEl) cartEl.textContent = 'coș(' + total + ')';
+  document.querySelectorAll('.nav__cart').forEach(el => {
+    el.textContent = 'coș(' + total + ')';
+  });
+}
+
+// Afiseaza produsele in cos.html
+function afiseazaCos() {
+  const continut = document.getElementById('cos-continut');
+  const totalEl = document.getElementById('cos-total');
+  if (!continut) return;
+
+  const cart = getCart();
+
+  if (cart.length === 0) {
+    continut.innerHTML = '<p class="cos__gol">Coșul tău este gol.</p>';
+    totalEl.innerHTML = '';
+    return;
+  }
+
+  let html = '';
+  let total = 0;
+
+  cart.forEach(item => {
+    total += item.pret * item.cantitate;
+    html += `
+      <div class="cos__item">
+        <img src="${item.imagine}" alt="${item.nume}" class="cos__item-img" />
+        <div class="cos__item-info">
+          <p class="cos__item-nume">${item.nume}</p>
+          <p class="cos__item-pret">${item.pret}$ × ${item.cantitate}</p>
+        </div>
+        <button class="cos__item-sterge" onclick="stergedinCos(${item.id})">Șterge</button>
+      </div>
+    `;
+  });
+
+  continut.innerHTML = html;
+  totalEl.innerHTML = 'Total: <strong>' + total + '$</strong>';
+}
+
+function stergedinCos(id) {
+  let cart = getCart();
+  cart = cart.filter(item => item.id !== id);
+  saveCart(cart);
+  updateCartCount();
+  afiseazaCos();
 }
 
 updateCartCount();
+afiseazaCos();
 
-// Afiseaza utilizatorul logat
-const userLogat = JSON.parse(localStorage.getItem('divix_logat'));
-const userDiv = document.getElementById('user-logat');
-if (userDiv) {
-  if (userLogat) {
-    userDiv.textContent = 'Logat ca: ' + userLogat.prenume + ' ' + userLogat.nume;
-    userDiv.style.display = 'block';
-  }
+// CONTACT
+const formContact = document.getElementById('formContact');
+if (formContact) {
+  formContact.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const mesaj = document.getElementById('mesaj-contact-trimis');
+    if (mesaj) {
+      mesaj.style.display = 'block';
+      setTimeout(() => { mesaj.style.display = 'none'; }, 3000);
+    }
+    formContact.reset();
+  });
 }
+
+// NEWSLETTER
+const btnAbonare = document.getElementById('btnAbonare');
+if (btnAbonare) {
+  btnAbonare.addEventListener('click', function() {
+    const mesaj = document.getElementById('mesaj-abonare');
+    mesaj.style.display = 'block';
+    btnAbonare.textContent = '✓ Abonat!';
+    btnAbonare.style.backgroundColor = '#4CAF50';
+    setTimeout(() => {
+      mesaj.style.display = 'none';
+      btnAbonare.textContent = 'Abonează-te';
+      btnAbonare.style.backgroundColor = '';
+    }, 3000);
+  });
+}
+
+function updateButoane() {
+  const cart = getCart();
+  document.querySelectorAll('.produs-card__btn').forEach(btn => {
+    const onclick = btn.getAttribute('onclick');
+    if (!onclick) return;
+    const id = parseInt(onclick.match(/\d+/)[0]);
+    const item = cart.find(i => i.id === id);
+    btn.textContent = item ? 'coș(' + item.cantitate + ')' : 'coș(0)';
+  });
+}
+
+updateButoane();

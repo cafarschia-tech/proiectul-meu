@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DIVIX — Contacte</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav__left">
+      <a href="register.html" class="nav__icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="8" r="4"/>
+          <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
+      </a>
+      <a href="register.html" class="nav__brand">Atelier</a>
+    </div>
+    <nav class="nav__links">
+      <a href="index.html">acasă</a>
+      <a href="colectia.html">colecția</a>
+      <a href="despre.html">despre noi</a>
+      <a href="contacte.html">contacte</a>
+      <a href="cos.html" class="nav__cart" id="nav-cart">coș(0)</a>
+    </nav>
+  </header>
+
+  <section class="contact">
+    <div class="contact__img-wrap">
+      <img src="imagini/contact.jpg" alt="Contact" class="contact__img" />
+    </div>
+    <div class="contact__content">
+      <h1 class="contact__titlu">Contactează-ne</h1>
+      <div class="contact__form-wrap">
+        <form class="contact__form" id="formContact">
+          <div class="contact__group">
+            <label class="contact__label">username</label>
+            <input class="contact__input" type="text" id="username" />
+          </div>
+          <div class="contact__group">
+            <label class="contact__label">mesaj</label>
+            <input class="contact__input" type="text" id="mesaj-contact" />
+          </div>
+          <div class="contact__footer">
+            <button type="submit" class="contact__btn">Trimite</button>
+            <div id="mesaj-contact-trimis" style="display:none; margin-top:16px; font-size:13px; color:green;"> Mesaj trimis cu succes!-_-</div>
+            <div class="contact__info">
+              <a href="mailto:divixcompany@gmail.com">divixcompany@gmail.com</a>
+              <span>069775432</span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
